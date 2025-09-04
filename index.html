@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikinIn - Wujudkan Ide Jadi Karya Keren</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a202c;
+            background-color: #f7fafc;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-title {
+            position: relative;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2c5282;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: #4299e1;
+            border-radius: 9999px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Loading Overlay Styling */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hero Section Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInDown {
+            animation: fadeInDown 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="flex flex-col items-center justify-center text-white">
+        <div class="spinner"></div>
+        <p class="mt-4 text-lg">Mengirim pesan...</p>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-24 text-center rounded-b-[40px] shadow-xl">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tighter mb-4 animate-fadeInDown">
+                Bikin Apa Aja, Dibikinin.
+            </h1>
+            <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto opacity-90 animate-fadeInUp">
+                Butuh solusi digital cepat, rapi, dan nggak ribet? BikinIn hadir untuk mewujudkan ide Anda menjadi karya keren.
+            </p>
+            <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-200 transition-all duration-300 font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 inline-block">
+                Wujudkan Ide Saya Sekarang!
+            </a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title mx-auto mb-12">Tentang Kami</h2>
+            <div class="glass-card p-8 md:p-12 max-w-4xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    BikinIn adalah tempat di mana semua ide digital bisa diwujudkan. Kami adalah tim yang fokus pada solusi digital yang cepat, efisien, dan berkualitas. Dari ide kecil hingga proyek besar, kami siap menjadi partner Anda. Dengan pengalaman di berbagai bidang—mulai dari desain hingga <span class="font-bold">coding</span>, kami memastikan setiap karya yang dihasilkan tidak hanya fungsional, tapi juga memiliki nilai estetika dan dampak yang kuat.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title mx-auto mb-12">Layanan Kami</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-laptop-code text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Website & Aplikasi</h3>
+                    <p class="text-gray-600">Dari <span class="font-bold">landing page</span> sederhana hingga aplikasi yang kompleks dan fungsional, kami siap membangunnya.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-code text-indigo-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Source Code & Pengembangan</h3>
+                    <p class="text-gray-600">Dapatkan kode sumber yang rapi dan terstruktur, siap untuk dikembangkan sesuai kebutuhan Anda.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                   <i class="fas fa-palette text-teal-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Desain & Media Digital</h3>
+                    <p class="text-gray-600">Pembuatan <span class="font-bold">e-book</span>, ilustrasi, hingga materi desain visual lainnya yang profesional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section (Dummy Content) -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title mx-auto mb-12">Galeri Karya</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/600x400/2c5282/ffffff?text=Proyek+Website" alt="Proyek Website" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Website Toko Online</h3>
+                        <p class="text-gray-600 text-sm">Pengembangan website e-commerce yang cepat dan responsif.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/600x400/4299e1/ffffff?text=Proyek+Aplikasi" alt="Proyek Aplikasi" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Aplikasi Manajemen Proyek</h3>
+                        <p class="text-gray-600 text-sm">Aplikasi mobile untuk memantau progres proyek secara real-time.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/600x400/48bb78/ffffff?text=Proyek+e-book" alt="Proyek e-book" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Desain E-book Interaktif</h3>
+                        <p class="text-gray-600 text-sm">Pembuatan desain e-book dengan tata letak yang menarik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title mx-auto mb-12 text-center">Mari Wujudkan Ide!</h2>
+            <div class="glass-card p-8 md:p-12 max-w-4xl mx-auto md:flex md:items-center md:space-x-8">
+                <!-- Contact Text (Left) -->
+                <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Punya ide? Kami yang akan bikin.</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Tuliskan ide atau proyek digital yang Anda impikan. Tim BikinIn siap membantu Anda mengubahnya menjadi kenyataan. Mari berkolaborasi!
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kami akan segera membalas pesan Anda untuk berdiskusi lebih lanjut.
+                    </p>
+                </div>
+                
+                <!-- Contact Form (Right) -->
+                <div class="md:w-1/2">
+                    <!-- Ganti "your-form-id" dengan ID formulir Formspree Anda -->
+                    <form id="contact-form" action="https://formspree.io/f/myzdbdqr" method="POST">
+                        <div class="mb-4">
+                            <input type="text" id="name" name="name" placeholder="Nama Anda" class="form-input" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" id="email" name="email" placeholder="Email Anda" class="form-input" required>
+                        </div>
+                        <div class="mb-6">
+                            <textarea id="message" name="message" rows="4" placeholder="Jelaskan ide Anda di sini..." class="form-input" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 rounded-t-[40px] shadow-inner mt-16">
+        <div class="container mx-auto px-6 text-white text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8">
+                <!-- Kontak Kami (Kiri) -->
+                <div class="flex-1 text-center md:text-left">
+                    <h4 class="font-bold text-lg mb-2">Kontak Kami</h4>
+                    <div class="space-y-2 text-gray-400 text-sm">
+                        <div class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-map-marker-alt text-white-500 text-xl mr-2"></i>
+                            <span class="font-medium">Jl. Mawar No. 123, Jakarta</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start">
+                            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center space-x-2 text-white-600 hover:text-blue-700">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                                <span>+62 812 3456 7890</span>
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start">
+                            <a href="mailto:hello@bikin.i" class="flex items-center space-x-2 text-white-600 hover:text-blue-800">
+                                <i class="fas fa-envelope text-xl"></i>
+                                <span>hello@bikin.i</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medsos (Kanan) -->
+                <div class="flex-1 text-center md:text-right md:w-1/2">
+                    <h4 class="font-bold text-lg mb-2">Media Sosial</h4>
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <!-- WhatsApp -->
+                        <a href="#" class="text-white-400 hover:text-blue-400">
+                            <i class="fab fa-whatsapp fa-2x"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="text-white-400 hover:text-blue-600">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <!-- Telegram -->
+                        <a href="#" class="text-white-400 hover:text-blue-500">
+                            <i class="fab fa-telegram fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="pt-8 mt-8 border-t border-gray-700">
+                <p class="text-sm text-gray-400 text-center">&copy; 2025 BikinIn. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            // Tampilkan loading overlay
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.style.display = 'flex';
+
+            const form = event.target;
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                loadingOverlay.style.display = 'none';
+                if (response.ok) {
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg';
+                    successMessage.innerHTML = `<p class="font-bold">Berhasil!</p><p>Pesan Anda telah berhasil terkirim. Kami akan segera menghubungi Anda.</p>`;
+                    form.parentNode.insertBefore(successMessage, form);
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        let errorMessageText = data.error || "Terjadi kesalahan saat mengirim pesan. Mohon coba lagi nanti.";
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg';
+                        errorMessage.innerHTML = `<p class="font-bold">Gagal!</p><p>${errorMessageText}</p>`;
+                        form.parentNode.insertBefore(errorMessage, form);
+                    });
+                }
+            })
+            .catch(error => {
+                loadingOverlay.style.display = 'none';
+                console.error('Error:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg';
+                errorMessage.innerHTML = `<p class="font-bold">Gagal!</p><p>Terjadi kesalahan jaringan. Mohon coba lagi nanti atau hubungi kami langsung.</p>`;
+                form.parentNode.insertBefore(errorMessage, form);
+            });
+            event.preventDefault(); // Mencegah form dikirim secara default
+        });
+    </script>
+</body>
+</html>
